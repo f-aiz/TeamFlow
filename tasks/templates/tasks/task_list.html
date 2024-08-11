@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Tasks for {{ project.name }}</h1>
+    <ul>
+        {% for task in project.tasks.all %}
+            <li>
+                {{ task.title }} - <a href="{% url 'task_create' project.id %}">Edit</a>
+                <form method="post" action="{% url 'task_delete' project.id task.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>No tasks available.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'task_create' project.id %}">Create a new task</a>
+    <a href="{% url 'project_detail' project.id %}">Back to Project Detail</a>
+</body>
+</html>

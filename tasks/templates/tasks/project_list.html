@@ -1,0 +1,22 @@
+<!-- tasks/templates/tasks/project_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project List</title>
+</head>
+<body>
+    <h1>Projects</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <ul>
+        {% for project in projects %}
+            <li>{{ project.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
